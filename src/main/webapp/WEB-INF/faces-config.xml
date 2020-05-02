@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config version="2.0" xmlns="http://java.sun.com/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
+    
+    <name>primefaces_omega</name>
+    
+    <component>
+        <component-type>org.primefaces.component.OmegaMenu</component-type>
+        <component-class>org.primefaces.omega.component.menu.OmegaMenu</component-class>
+    </component>
+    
+    <render-kit>
+        <renderer>
+            <component-family>org.primefaces.component</component-family>
+            <renderer-type>org.primefaces.component.OmegaMenuRenderer</renderer-type>
+            <renderer-class>org.primefaces.omega.component.menu.OmegaMenuRenderer</renderer-class>
+        </renderer>
+    </render-kit>
+    <navigation-rule>
+        <from-view-id>/Tenant/TenantList.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>TenantAdd</from-outcome>
+            <to-view-id>/Tenant/TenantAdd.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>TenantList</from-outcome>
+            <to-view-id>/Tenant/TenantList.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>TenantEdit</from-outcome>
+            <to-view-id>/Tenant/TenantEdit.xhtml</to-view-id>
+            <redirect include-view-params="true">
+                <view-param>
+                    <name>tenantid</name>
+                    <value>#{tenantList.selectedTenantDTO.id}</value>
+                </view-param>
+            </redirect>
+        </navigation-case>        
+    </navigation-rule>    
+    <navigation-rule>
+        <from-view-id>/Tenant/TenantEdit.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>TenantList</from-outcome>
+            <to-view-id>/Tenant/TenantList.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>        
+    </navigation-rule>    
+    <navigation-rule>
+        <from-view-id>/Tenant/TenantAdd.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>TenantList</from-outcome>
+            <to-view-id>/Tenant/TenantList.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>TenantAdd</from-outcome>
+            <to-view-id>/Tenant/TenantAdd.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule> 
+</faces-config>
