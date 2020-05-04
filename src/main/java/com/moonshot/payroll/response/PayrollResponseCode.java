@@ -14,5 +14,6 @@ public class PayrollResponseCode {
     public static int SUCCESS = 0;
     public static int SERVICE_CONNECTION_FAILURE = 001;
     public static int DB_DUPLICATE = 002;
+    public static int USER_AUTH_FAILURE = 99;
     
 }

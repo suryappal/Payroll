@@ -35,6 +35,9 @@ public class User implements Serializable {
     @Size(max = 45)
     @Column(name = "name")
     private String name;
+    @Size(max = 45)
+    @Column(name = "password")
+    private String password;
     @JoinColumns({
         @JoinColumn(name = "role_id", referencedColumnName = "id", insertable = false, updatable = false),
         @JoinColumn(name = "role_tenant_id", referencedColumnName = "tenant_id", insertable = false, updatable = false)})
@@ -66,6 +69,14 @@ public class User implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Role getRole() {

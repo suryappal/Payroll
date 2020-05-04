@@ -22,11 +22,12 @@
 
             <div id="login-container">
                 <span class="title">Omega</span>
+                <p:growl id="growl" showDetail="true" />
                 <h:form id="login" >
 
                     <div class="ui-g ui-fluid">
                         <div class="ui-g-12">
-                            <p:inputText placeholder="Username" value="#{loginController.userName}" />
+                            <p:inputText placeholder="Username" value="#{loginController.userID}" />
                         </div>
                         <div class="ui-g-12">
                             <p:password placeholder="Password" feedback="false" value="#{loginController.password}"/>
@@ -39,7 +40,7 @@
                             <p:link>Forgot Password</p:link>
                         </div>
                         <div class="ui-g-12">                            
-                            <p:commandButton action="#{loginController.login()}" value="Login" icon="fa fa-check"></p:commandButton>
+                            <p:commandButton action="#{loginController.login()}" value="Login" icon="fa fa-check" update="@form"></p:commandButton>
                         </div>
                     </div>
                 </h:form>

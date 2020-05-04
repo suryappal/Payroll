@@ -21,6 +21,7 @@ public class PayrollResponseMessage {
         responseMessageMap.put(PayrollResponseCode.SUCCESS, "Success");
         responseMessageMap.put(PayrollResponseCode.SERVICE_CONNECTION_FAILURE, "Ki je hoche bojha jache na");
         responseMessageMap.put(PayrollResponseCode.DB_DUPLICATE, "Duplicate key in DB. Contact admin.");
+        responseMessageMap.put(PayrollResponseCode.USER_AUTH_FAILURE, "User authentication failed.");
     }
 
     public String getResponseMessage (Integer responseCode) {

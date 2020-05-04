@@ -6,12 +6,16 @@
 package com.moonshot.payroll.service;
 
 import com.moonshot.payroll.DAO.TenantDAO;
+import com.moonshot.payroll.DAO.UserDAO;
 import com.moonshot.payroll.DTO.TenantDTO;
+import com.moonshot.payroll.DTO.UserDTO;
 import com.moonshot.payroll.JPA.exceptions.IllegalOrphanException;
 import com.moonshot.payroll.JPA.exceptions.NonexistentEntityException;
 import com.moonshot.payroll.JPA.exceptions.PreexistingEntityException;
 import com.moonshot.payroll.entities.Role;
 import com.moonshot.payroll.entities.Tenant;
+import com.moonshot.payroll.entities.User;
+import com.moonshot.payroll.entities.UserPK;
 import com.moonshot.payroll.response.PayrollResponseCode;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +23,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import org.w3c.dom.UserDataHandler;
 
 /**
  *
@@ -109,6 +114,23 @@ public class MasterDataService {
         }
         
         return tenantDTOList;
+    }
+    
+    public UserDTO authenticateUser(UserDTO userDTO){
+        UserPK userPK = new UserPK(userDTO.getUserID(),1,1);
+              
+        UserDAO userDAO = new UserDAO(emf);
+        User user=userDAO.findUser(userPK);
+        
+        if(user.getPassword().equals(userDTO.getPassword())){
+            userDTO.setResponse(PayrollResponseCode.SUCCESS); 
+            userDTO.setUserName(user.getName());
+            
+        }else{
+            userDTO.setResponse(PayrollResponseCode.USER_AUTH_FAILURE);
+        }
+        return userDTO;
+        
     }
     
     
